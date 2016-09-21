@@ -31,7 +31,7 @@ namespace EasyJet.Auto.PageObjects {
 			while( ElementIsVisible( Spinner_Loader() ) ) {
 				Thread.Sleep( 500 );
 			}
-
+			WebElementExceptions.WaitForPageLoaded();
 			return new BookingStep2Page();
 		}
 
