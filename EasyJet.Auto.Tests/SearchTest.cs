@@ -2,21 +2,12 @@
 using EasyJet.Auto.PageObjects;
 using EasyJet.Auto.Utilities;
 using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
 
 namespace EasyJet.Auto.Tests
 {
 	[TestFixture]
-    public class SearchTest
+    public class SearchTest : SuiteBase
     {
-
-		[SetUp]
-		public void Initialize() {
-			PropertiesCollection.driver = new ChromeDriver();
-			Console.WriteLine( "Open the Browser" );
-			PropertiesCollection.driver.Navigate().GoToUrl( "http://101.test/TestPages/HomePage.html?lang=EN" );
-			//driver.Manage().Window.Maximize();
-		}
 
 		[Test]
 		public void TestUnableToSearchWithMoreInfantsThanAdults() {
@@ -61,7 +52,6 @@ namespace EasyJet.Auto.Tests
 			Assert.IsFalse( bookingPage.HasFlights(), "You can not fly on Friday" );
 		}
 
-
 		[Test]
 		public void TestConfirmFlight() {
 
@@ -94,12 +84,6 @@ namespace EasyJet.Auto.Tests
 			bookingStep2Page.AddHoldBag( "23" );
 			var priceWithLuggage = bookingStep2Page.GetFinalPrice();
 			Assert.IsTrue( (bool?)( GetDoubleValue( priceWithLuggage ) > GetDoubleValue( price ) ), "Cost of the flight has increased with adding luggage" );
-		}
-
-		[TearDown]
-		public void CleanUp() {
-			PropertiesCollection.driver.Quit();
-			Console.WriteLine( "Close the Browser" );
 		}
 
 		private double GetDoubleValue( string price ) {
