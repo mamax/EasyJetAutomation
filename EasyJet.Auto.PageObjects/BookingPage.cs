@@ -33,6 +33,7 @@ namespace EasyJet.Auto.PageObjects {
 		}
 
 		public BookingStep2Page SelectJourney() {
+			WaitForElementEnabledAndDisplayed( Link_Flight() );
 			Driver.FindElement( Link_Flight() ).Click();
 
 			while( ElementIsVisible( Spinner_Loader() ) ) {

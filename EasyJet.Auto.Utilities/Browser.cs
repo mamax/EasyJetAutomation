@@ -50,13 +50,8 @@ namespace EasyJet.Auto.Utilities {
 
 		private static ChromeDriver StartChrome() {
 			var chromeOptions = new ChromeOptions();
-			var defaultDataFolder = Environment.GetFolderPath( Environment.SpecialFolder.ApplicationData ) + @"\..\Local\Google\Chrome\User Data\Default";
 
-			if( Directory.Exists( defaultDataFolder ) ) {
-				WaitHelper.Try( () => DirectoryHelper.ForceDelete( defaultDataFolder ) );
-			}
-
-			return new ChromeDriver( Directory.GetCurrentDirectory(), chromeOptions );
+			return new ChromeDriver( chromeOptions );
 		}
 
 		private static InternetExplorerDriver StartInternetExplorer() {
@@ -66,7 +61,7 @@ namespace EasyJet.Auto.Utilities {
 				EnableNativeEvents = true
 			};
 
-			return new InternetExplorerDriver( Directory.GetCurrentDirectory(), internetExplorerOptions );
+			return new InternetExplorerDriver( internetExplorerOptions );
 		}
 
 		public static void Quit() {

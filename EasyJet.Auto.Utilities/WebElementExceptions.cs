@@ -9,7 +9,7 @@ namespace EasyJet.Auto.Utilities {
 	public static class WebElementExceptions {
 
 		public static void WaitForPageLoaded() {
-			WaitForPageLoaded( 5, 50, (int)TimeSpan.FromSeconds( 1000 ).TotalMilliseconds );
+			WaitForPageLoaded( 5, 50, (int)TimeSpan.FromSeconds( 200 ).TotalMilliseconds );
 		}
 
 		public static void WaitForPageLoaded( int timeSliceMs, int continuousChecks, int timeoutMs ) {

@@ -7,7 +7,7 @@ namespace EasyJet.Auto.PageObjects
 {
     public class SearchPage : Page {
 
-		private const string URI = "http://101.test/TestPages/HomePage.html?lang=EN";
+		private const string URI = "http://www.101.test/TestPages/HomePage.html?lang=EN";
 
 		public SearchPage( IWebDriver driver )
 			: base( driver ) {
