@@ -1,6 +1,7 @@
 ﻿using System;
 using EasyJet.Auto.PageObjects;
 using EasyJet.Auto.Utilities;
+using NUnit.Core;
 using NUnit.Framework;
 
 namespace EasyJet.Auto.Tests
