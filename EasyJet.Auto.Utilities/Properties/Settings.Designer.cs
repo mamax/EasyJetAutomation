@@ -25,7 +25,7 @@ namespace EasyJet.Auto.Utilities.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Chrome")]
+        [global::System.Configuration.DefaultSettingValueAttribute("InternetExplorer")]
         public global::EasyJet.Auto.Utilities.Browsers Browser {
             get {
 				return ( (global::EasyJet.Auto.Utilities.Browsers)( this["Browser"] ) );
