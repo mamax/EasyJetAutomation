@@ -11,7 +11,6 @@ namespace EasyJet.Auto.Utilities {
 	public static class DirectoryHelper {
 
 		public static void ForceDelete( string path ) {
-			Contract.Requires( !string.IsNullOrEmpty( path ) );
 
 			if( !Directory.Exists( path ) ) {
 				return;

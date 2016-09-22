@@ -8,12 +8,6 @@ namespace EasyJet.Auto.Utilities {
 
 	public static class WebElementExceptions {
 
-		public static object ExecuteJavaScript( string javaScript, params object[] args ) {
-			var javaScriptExecutor = (IJavaScriptExecutor)PropertiesCollection.driver;
-
-			return javaScriptExecutor.ExecuteScript( javaScript, args );
-		}
-
 		public static void WaitForPageLoaded() {
 			WaitForPageLoaded( 5, 50, (int)TimeSpan.FromSeconds( 1000 ).TotalMilliseconds );
 		}
@@ -22,7 +16,7 @@ namespace EasyJet.Auto.Utilities {
 			if( !IsDocumentReadyStateComplete( PropertiesCollection.driver ) ) {
 				if( !PropertiesCollection.driver.WaitUntil( IsDocumentReadyStateComplete, timeoutMs ) ) {
 
-					return; //it's unnecessary to wait comparing page source length if readyState was changed.
+					return;
 				}
 			}
 
@@ -39,7 +33,6 @@ namespace EasyJet.Auto.Utilities {
 		}
 
 		private static void WaitForPageSourceLoaded( int timeSliceMs, int continuousChecks, int timeoutMs ) {
-			int timeoutForLogMs = timeoutMs;
 			var continuousChecksCounter = 0;
 
 			while( timeoutMs > 0 ) {

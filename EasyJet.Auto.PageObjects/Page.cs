@@ -1,29 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using EasyJet.Auto.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium.Support.Extensions;
 
 namespace EasyJet.Auto.PageObjects {
 
 	public abstract class Page {
 
-		//Driver = PropertiesCollection.driver() = Driver;
-		//protected IWebElement _element;
-		//WebElementExceptions extens = new WebElementExceptions()
+		protected static IWebDriver Driver;
 
-		public void SwitchToFrame( string inlineFrame ) {
-			PropertiesCollection.driver.SwitchTo().Frame( inlineFrame );
+		protected Page( IWebDriver driver ) {
+			Driver = driver;
+			Driver = PropertiesCollection.driver;
 		}
 
-		protected void Click(IWebElement element) {
-			element.Click();
+		protected void SwitchToFrame( string inlineFrame ) {
+			Driver.SwitchTo().Frame( inlineFrame );
 		}
 
 		protected void ClearAndType( IWebElement element, String text) {
@@ -32,22 +24,22 @@ namespace EasyJet.Auto.PageObjects {
 			element.SendKeys(Keys.Enter);
 		}
 
-		public void SelectOptionByValue( By element, String text ) {
+		protected void SelectOptionByValue( By element, String text ) {
 			try {
-				SelectElement slct = new SelectElement( PropertiesCollection.driver.FindElement( element ) );
+				WaitForElementEnabledAndDisplayed( element );
+				SelectElement slct = new SelectElement( Driver.FindElement( element ) );
 				slct.SelectByValue( text );
 
 			} catch( StaleElementReferenceException ) {
 				WebElementExceptions.WaitForPageLoaded();
-				SelectElement slct = new SelectElement( PropertiesCollection.driver.FindElement( element ) );
+				SelectElement slct = new SelectElement( Driver.FindElement( element ) );
 				slct.SelectByValue( text );
 			}
-
 		}
 
-		public Boolean ElementIsPresent( By element ) {
+		protected Boolean ElementIsPresent( By element ) {
 			try {
-				PropertiesCollection.driver.FindElement( element );
+				Driver.FindElement( element );
 				return true;
 			} catch( Exception e ) {
 				if( e is NoSuchElementException || e is WebDriverTimeoutException ) {
@@ -57,9 +49,9 @@ namespace EasyJet.Auto.PageObjects {
 			}
 		}
 
-		public Boolean ElementIsVisible( By element ) {
+		protected Boolean ElementIsVisible( By element ) {
 			try {
-				return PropertiesCollection.driver.FindElement( element ).Displayed;
+				return Driver.FindElement( element ).Displayed;
 			} catch( Exception e ) {
 				if( e is NoSuchElementException || e is ElementNotVisibleException || e is WebDriverTimeoutException ) {
 					return false;
@@ -68,7 +60,16 @@ namespace EasyJet.Auto.PageObjects {
 			}
 		}
 
-		
+		protected Boolean WaitForElementEnabledAndDisplayed( By element ) {
+			try {
+				return Driver.FindElement( element ).Enabled && Driver.FindElement( element ).Displayed;
+			} catch( Exception e ) {
+				if( e is NoSuchElementException || e is ElementNotVisibleException ) {
+					return false;
+				}
+				throw;
+			}
+		}
 
 	}
 }

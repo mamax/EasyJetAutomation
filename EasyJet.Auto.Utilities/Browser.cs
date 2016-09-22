@@ -19,7 +19,7 @@ namespace EasyJet.Auto.Utilities {
 
 	public static class Browser {
 
-		public static Browsers SelectedBrowser {
+		private static Browsers SelectedBrowser {
 			get { return Settings.Default.Browser; }
 		}
 
@@ -44,9 +44,6 @@ namespace EasyJet.Auto.Utilities {
 				default:
 					throw new Exception( string.Format( "Unknown browser selected: {0}.", SelectedBrowser ) );
 			}
-
-			PropertiesCollection.driver.Navigate().GoToUrl( "http://101.test/TestPages/HomePage.html?lang=EN" );
-			PropertiesCollection.driver.Manage().Window.Maximize();
 
 			return WebDriver;
 		}

@@ -2,15 +2,13 @@
 
 namespace EasyJet.Auto.Utilities {
 
-	public class DataTimeHelper {
-
-		private static DateTime _dateTime = new DateTime();
+	public static class DataTimeHelper {
 
 		public static DateTime AddDaysToCurrentDate( int day ) {
 			return GetCurrentDataTime().AddDays( day );
 		}
 			
-		public static DateTime GetCurrentDataTime() {
+		private static DateTime GetCurrentDataTime() {
 			return DateTime.Now;
 		}
 

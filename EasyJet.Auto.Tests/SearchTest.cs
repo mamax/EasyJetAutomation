@@ -12,7 +12,8 @@ namespace EasyJet.Auto.Tests
 		[Test]
 		public void TestUnableToSearchWithMoreInfantsThanAdults() {
 
-			SearchPage searchPage = new SearchPage();
+			SearchPage searchPage = new SearchPage( Driver );
+			searchPage.Open();
 			searchPage.SelectAdultsNum( "2" ).SelectInfantsNum( "3" );
 
 			Assert.IsTrue( searchPage.HasOopsMessage(), "Oops message does not appears" );
@@ -21,7 +22,8 @@ namespace EasyJet.Auto.Tests
 		[Test]
 		public void TestAbleToFlightFor2AdultsAnd1Children() {
 
-			SearchPage searchPage = new SearchPage();
+			SearchPage searchPage = new SearchPage( Driver );
+			searchPage.Open();
 			searchPage.SelectFlightFrom( "Luton" );
 			searchPage.SelectFlightTo( "Barcelona" );
 			var fromDate = DataTimeHelper.AddDaysToCurrentDate( 3 );
@@ -39,7 +41,8 @@ namespace EasyJet.Auto.Tests
 		[Test]
 		public void TestAbleToFlyOnFridays() {
 
-			SearchPage searchPage = new SearchPage();
+			SearchPage searchPage = new SearchPage( Driver );
+			searchPage.Open();
 			searchPage.SelectFlightFrom( "Luton" );
 			searchPage.SelectFlightTo( "Porto" );
 			searchPage.SetOneWayJourney();
@@ -55,7 +58,8 @@ namespace EasyJet.Auto.Tests
 		[Test]
 		public void TestConfirmFlight() {
 
-			SearchPage searchPage = new SearchPage();
+			SearchPage searchPage = new SearchPage( Driver );
+			searchPage.Open();
 			searchPage.SelectFlightFrom( "Gatwick" );
 			searchPage.SelectFlightTo( "Bordeaux" );
 			searchPage.SetOneWayJourney();
@@ -70,7 +74,8 @@ namespace EasyJet.Auto.Tests
 		[Test]
 		public void TestConfirmFlightWithLuggage() {
 
-			SearchPage searchPage = new SearchPage();
+			SearchPage searchPage = new SearchPage( Driver );
+			searchPage.Open();
 			searchPage.SelectFlightFrom( "Gatwick" );
 			searchPage.SelectFlightTo( "Bordeaux" );
 			searchPage.SetOneWayJourney();
@@ -83,13 +88,8 @@ namespace EasyJet.Auto.Tests
 			BookingStep2Page bookingStep2Page = bookingPage.ClickContinue();
 			bookingStep2Page.AddHoldBag( "23" );
 			var priceWithLuggage = bookingStep2Page.GetFinalPrice();
-			Assert.IsTrue( (bool?)( GetDoubleValue( priceWithLuggage ) > GetDoubleValue( price ) ), "Cost of the flight has increased with adding luggage" );
+			Assert.IsTrue( ConvertValue.GetDoubleValue( priceWithLuggage ) > ConvertValue.GetDoubleValue( price ), "Cost of the flight has not increased with adding luggage" );
 		}
 
-		private double GetDoubleValue( string price ) {
-			var value = price.Remove(0,1);
-			var returnValue = Double.Parse( value );
-			return returnValue;
-		}
     }
 }

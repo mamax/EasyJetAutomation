@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EasyJet.Auto.Utilities {
 
-	public class WaitHelper {
+	public static class WaitHelper {
 
 		public static bool Try( Action action ) {
 			Exception exception;

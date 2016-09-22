@@ -12,18 +12,23 @@ namespace EasyJet.Auto.PageObjects {
 
 	public class BookingStep2Page : Page{
 
+		public BookingStep2Page( IWebDriver driver )
+			: base( driver ) {
+			Driver = driver;
+			Driver = PropertiesCollection.driver;
+		}
+
 		private IWebElement Button_AddHoldItems() {
-			return PropertiesCollection.driver.FindElement( By.Id( "addDefaultHoldBaggage" ) );
+			return Driver.FindElement( By.Id( "addDefaultHoldBaggage" ) );
 		}
 
 		private IWebElement Final_Price() {
-			return PropertiesCollection.driver.FindElement( By.XPath( "//div[@class='amount subtotal']" ) );
+			return Driver.FindElement( By.XPath( "//div[@class='amount subtotal']" ) );
 		}
 
 		private SelectElement Drop_Down_HoldBag() {
-			return new SelectElement( PropertiesCollection.driver.FindElement( By.Id( "bagIndex_1" ) ) );
+			return new SelectElement( Driver.FindElement( By.Id( "bagIndex_1" ) ) );
 		}
-
 
 		public void AddHoldBag( string p ) {
 			Button_AddHoldItems().Click();

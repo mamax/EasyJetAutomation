@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Browser" Type="System.String" Scope="User">
-      <Value Profile="(Default)">InternetExplorer</Value>
+      <Value Profile="(Default)">Chrome</Value>
     </Setting>
   </Settings>
 </SettingsFile>
