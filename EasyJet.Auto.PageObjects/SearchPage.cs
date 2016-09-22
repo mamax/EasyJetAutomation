@@ -7,7 +7,7 @@ namespace EasyJet.Auto.PageObjects
 {
     public class SearchPage : Page {
 
-		private const string URI = "www.101.test/TestPages/HomePage.html?lang=EN";
+		private const string URI = "http://101.test/TestPages/HomePage.html?lang=EN";
 
 		public SearchPage( IWebDriver driver )
 			: base( driver ) {
@@ -96,7 +96,7 @@ namespace EasyJet.Auto.PageObjects
 
 		private SearchPage SetYear( string year ) {
 			SwitchToPodV3Frame();
-			Drop_Down_Year().SelectByValue( year );
+			SelectOptionByValue( Drop_Down_Year(), year );
 			return this;
 		}
 
@@ -107,7 +107,7 @@ namespace EasyJet.Auto.PageObjects
 
 		private SearchPage SetMonth( string month ) {
 			SwitchToPodV3Frame();
-			Drop_Down_Month().SelectByValue( month );
+			SelectOptionByValue( Drop_Down_Month(), month );
 			return this;
 		}
 
@@ -163,12 +163,12 @@ namespace EasyJet.Auto.PageObjects
 			return Driver.FindElement( By.Id( "isReturn" ) );
 		}
 
-		private SelectElement Drop_Down_Year() {
-			return new SelectElement( Driver.FindElement( By.Id( "ui-datepicker-year" ) ) );
+		private By Drop_Down_Year() {
+			return By.Id( "ui-datepicker-year" );
 		}
 
-		private SelectElement Drop_Down_Month() {
-			return new SelectElement( Driver.FindElement( By.Id( "ui-datepicker-month" ) ) );
+		private By Drop_Down_Month() {
+			return By.Id( "ui-datepicker-month" );
 		}
 
 		private IWebElement Button_Day( string day ) {

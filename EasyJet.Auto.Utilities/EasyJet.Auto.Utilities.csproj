@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Browser.cs" />
+    <Compile Include="ConvertValue.cs" />
     <Compile Include="DataTimeHelper.cs" />
     <Compile Include="DirectoryHelper.cs" />
     <Compile Include="PropertiesCollection.cs" />
