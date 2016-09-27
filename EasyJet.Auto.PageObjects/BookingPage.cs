@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using EasyJet.Auto.Utilities;
 using OpenQA.Selenium;
 
@@ -9,7 +8,7 @@ namespace EasyJet.Auto.PageObjects {
 		public BookingPage( IWebDriver driver )
 			: base( driver ) {
 			Driver = driver;
-			Driver = PropertiesCollection.driver;
+			Driver = PropertiesCollection.Driver;
 		}
 
 		public bool HasFlights() {

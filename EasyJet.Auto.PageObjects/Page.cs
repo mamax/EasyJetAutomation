@@ -11,7 +11,7 @@ namespace EasyJet.Auto.PageObjects {
 
 		protected Page( IWebDriver driver ) {
 			Driver = driver;
-			Driver = PropertiesCollection.driver;
+			Driver = PropertiesCollection.Driver;
 		}
 
 		protected void SwitchToFrame( string inlineFrame ) {

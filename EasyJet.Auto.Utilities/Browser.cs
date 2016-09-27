@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.IO;
 using EasyJet.Auto.Utilities.Properties;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -23,26 +22,24 @@ namespace EasyJet.Auto.Utilities {
 			get { return Settings.Default.Browser; }
 		}
 
-		private static IWebDriver WebDriver {
-			get { return PropertiesCollection.driver ?? StartWebDriver(); }
-		}
+		private static IWebDriver WebDriver => PropertiesCollection.Driver ?? StartWebDriver();
 
-		public static void Start() {
-			PropertiesCollection.driver = StartWebDriver();
+	    public static void Start() {
+			PropertiesCollection.Driver = StartWebDriver();
 		}
 
 		private static IWebDriver StartWebDriver() {
-			if( PropertiesCollection.driver != null ) return PropertiesCollection.driver;
+			if( PropertiesCollection.Driver != null ) return PropertiesCollection.Driver;
 
 			switch( SelectedBrowser ) {
 				case Browsers.InternetExplorer:
-					PropertiesCollection.driver = StartInternetExplorer();
+					PropertiesCollection.Driver = StartInternetExplorer();
 					break;
 				case Browsers.Chrome:
-					PropertiesCollection.driver = StartChrome();
+					PropertiesCollection.Driver = StartChrome();
 					break;
 				default:
-					throw new Exception( string.Format( "Unknown browser selected: {0}.", SelectedBrowser ) );
+					throw new Exception(String.Format( "Unknown browser selected: {0}.", SelectedBrowser ) );
 			}
 
 			return WebDriver;
@@ -65,10 +62,10 @@ namespace EasyJet.Auto.Utilities {
 		}
 
 		public static void Quit() {
-			if( PropertiesCollection.driver == null ) return;
+			if( PropertiesCollection.Driver == null ) return;
 
-			PropertiesCollection.driver.Quit();
-			PropertiesCollection.driver = null;
+			PropertiesCollection.Driver.Quit();
+			PropertiesCollection.Driver = null;
 		}
 
 	}

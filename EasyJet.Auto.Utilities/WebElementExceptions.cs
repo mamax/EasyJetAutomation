@@ -13,8 +13,8 @@ namespace EasyJet.Auto.Utilities {
 		}
 
 		public static void WaitForPageLoaded( int timeSliceMs, int continuousChecks, int timeoutMs ) {
-			if( !IsDocumentReadyStateComplete( PropertiesCollection.driver ) ) {
-				if( !PropertiesCollection.driver.WaitUntil( IsDocumentReadyStateComplete, timeoutMs ) ) {
+			if( !IsDocumentReadyStateComplete( PropertiesCollection.Driver ) ) {
+				if( !PropertiesCollection.Driver.WaitUntil( IsDocumentReadyStateComplete, timeoutMs ) ) {
 
 					return;
 				}
@@ -36,11 +36,11 @@ namespace EasyJet.Auto.Utilities {
 			var continuousChecksCounter = 0;
 
 			while( timeoutMs > 0 ) {
-				object htmlLengthBeforeSleep = ( (IJavaScriptExecutor)PropertiesCollection.driver ).ExecuteScript( "return document.documentElement.innerHTML.length;" );
+				object htmlLengthBeforeSleep = ( (IJavaScriptExecutor)PropertiesCollection.Driver ).ExecuteScript( "return document.documentElement.innerHTML.length;" );
 				Thread.Sleep( timeSliceMs );
 				timeoutMs -= timeSliceMs;
 
-				if( htmlLengthBeforeSleep.Equals( ( (IJavaScriptExecutor)PropertiesCollection.driver ).ExecuteScript( "return document.documentElement.innerHTML.length;" ) ) ) {
+				if( htmlLengthBeforeSleep.Equals( ( (IJavaScriptExecutor)PropertiesCollection.Driver ).ExecuteScript( "return document.documentElement.innerHTML.length;" ) ) ) {
 					continuousChecksCounter++;
 				} else {
 					continuousChecksCounter = 0;

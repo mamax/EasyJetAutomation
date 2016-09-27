@@ -13,7 +13,7 @@ namespace EasyJet.Auto.Utilities {
 		}
 
 		public static DateTime GetFridayDate() {
-			var date = DataTimeHelper.GetCurrentDataTime();
+			var date = GetCurrentDataTime();
 
 			if( date.DayOfWeek != DayOfWeek.Friday ) {
 

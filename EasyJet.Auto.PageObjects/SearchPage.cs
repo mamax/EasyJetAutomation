@@ -1,24 +1,23 @@
 ﻿using System;
 using EasyJet.Auto.Utilities;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
 namespace EasyJet.Auto.PageObjects
 {
     public class SearchPage : Page {
 
-		private const string URI = "http://www.101.test/TestPages/HomePage.html?lang=EN";
+		private const string URi = "http://www.101.test/TestPages/HomePage.html?lang=EN";
 
 		public SearchPage( IWebDriver driver )
 			: base( driver ) {
 			Driver = driver;
-			Driver = PropertiesCollection.driver;
+			Driver = PropertiesCollection.Driver;
 		}
 
 		#region Methods
 
 		public void Open() {
-			Driver.Navigate().GoToUrl( URI );
+			Driver.Navigate().GoToUrl( URi );
 		}
 
 		private SearchPage SwitchToPodV3Frame() {
@@ -47,7 +46,7 @@ namespace EasyJet.Auto.PageObjects
 			return this;
 		}
 
-		public BookingPage ShowFlightsClick() {
+		public BookingPage ClickShowFlights() {
 			SwitchToPodV3Frame();
 			Button_ShowFlights().Click();
 			return new BookingPage(Driver);

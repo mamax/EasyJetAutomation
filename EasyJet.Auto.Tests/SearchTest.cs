@@ -1,7 +1,5 @@
-﻿using System;
-using EasyJet.Auto.PageObjects;
+﻿using EasyJet.Auto.PageObjects;
 using EasyJet.Auto.Utilities;
-using NUnit.Core;
 using NUnit.Framework;
 
 namespace EasyJet.Auto.Tests
@@ -34,7 +32,7 @@ namespace EasyJet.Auto.Tests
 			searchPage.SetReturnDate( toDate.Day.ToString(), toDate.Month.ToString(), toDate.Year.ToString() );
 
 			searchPage.SelectAdultsNum( "2" ).SelectChildrenNum( "1" ).SelectInfantsNum( "0" );
-			BookingPage bookingPage = searchPage.ShowFlightsClick();
+			BookingPage bookingPage = searchPage.ClickShowFlights();
 
 			Assert.IsTrue( bookingPage.HasFlights(), "You can not fly with such preferences" );
 		}
@@ -51,7 +49,7 @@ namespace EasyJet.Auto.Tests
 			searchPage.SetOutBoundDate( date.Day.ToString(), date.Month.ToString(), date.Year.ToString() );
 			searchPage.SelectAdultsNum( "1" ).SelectChildrenNum( "0" ).SelectInfantsNum( "0" );
 
-			BookingPage bookingPage = searchPage.ShowFlightsClick();
+			BookingPage bookingPage = searchPage.ClickShowFlights();
 
 			Assert.IsFalse( bookingPage.HasFlights(), "You can not fly on Friday" );
 		}
@@ -67,7 +65,7 @@ namespace EasyJet.Auto.Tests
 			searchPage.SetOutBoundDate( "1", "3", "2017" );
 			searchPage.SelectAdultsNum( "1" ).SelectChildrenNum( "0" ).SelectInfantsNum( "0" );
 
-			BookingPage bookingPage = searchPage.ShowFlightsClick();
+			BookingPage bookingPage = searchPage.ClickShowFlights();
 			bookingPage.SelectJourney();
 			Assert.IsTrue( bookingPage.GetJourneyPrice().Contains( "£41.49" ), "Cost of the flight is not true" );
 		}
@@ -83,7 +81,7 @@ namespace EasyJet.Auto.Tests
 			searchPage.SetOutBoundDate( "1", "3", "2017" );
 			searchPage.SelectAdultsNum( "1" ).SelectChildrenNum( "0" ).SelectInfantsNum( "0" );
 
-			BookingPage bookingPage = searchPage.ShowFlightsClick();
+			BookingPage bookingPage = searchPage.ClickShowFlights();
 			bookingPage.SelectJourney();
 			var price = bookingPage.GetJourneyPrice();
 			BookingStep2Page bookingStep2Page = bookingPage.ClickContinue();

@@ -6,7 +6,7 @@ namespace EasyJet.Auto.Tests {
 
 	public class SuiteBase {
 
-		protected IWebDriver Driver = PropertiesCollection.driver;
+		protected IWebDriver Driver = PropertiesCollection.Driver;
 
 		[SetUp]
 		public void TestInitialize() {
