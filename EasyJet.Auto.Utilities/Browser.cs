@@ -42,7 +42,8 @@ namespace EasyJet.Auto.Utilities {
 					throw new Exception(String.Format( "Unknown browser selected: {0}.", SelectedBrowser ) );
 			}
 
-			return WebDriver;
+            PropertiesCollection.Driver.Manage().Window.Maximize();
+            return WebDriver;
 		}
 
 		private static ChromeDriver StartChrome() {
