@@ -43,6 +43,10 @@ namespace EasyJet.Auto.Utilities {
 			}
 
             PropertiesCollection.Driver.Manage().Window.Maximize();
+            PropertiesCollection.Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            PropertiesCollection.Driver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromSeconds(20));
+            PropertiesCollection.Driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(15));
+
             return WebDriver;
 		}
 

@@ -1,4 +1,3 @@
-﻿using System.Threading;
 using EasyJet.Auto.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -28,7 +27,6 @@ namespace EasyJet.Auto.PageObjects {
 		public void AddHoldBag( string p ) {
 			Button_AddHoldItems().Click();
 			Drop_Down_HoldBag().SelectByValue( p );
-			Thread.Sleep( 200 );
 		}
 
 		public string GetFinalPrice() {

@@ -23,7 +23,6 @@ namespace EasyJet.Auto.PageObjects
 		private SearchPage SwitchToPodV3Frame() {
 			Driver.SwitchTo().DefaultContent();
 			SwitchToFrame( "searchPodV3Frame" );
-			WebElementExceptions.WaitForPageLoaded();
 			return this;
 		}
 
